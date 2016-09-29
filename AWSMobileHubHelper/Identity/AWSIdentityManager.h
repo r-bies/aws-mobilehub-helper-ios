@@ -17,7 +17,6 @@ FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignInNotification;
 FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignOutNotification;
 
 @interface AWSIdentityManager : NSObject<AWSIdentityProviderManager>
-
 /**
  * Indicates whether the user is signed-in or not.
  * @return true if user is signed-in
@@ -56,6 +55,8 @@ FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignOutNotification;
  AWSIdentityManager *identityManager = [AWSIdentityManager defaultIdentityManager];
  */
 + (instancetype)defaultIdentityManager;
+
++ (void)setCustomCognitoCredentialsProvider:(AWSCognitoCredentialsProvider *)customCognitoCredentialsProvider;
 
 /**
  * Signs the user out of whatever third party identity provider they used to sign in.

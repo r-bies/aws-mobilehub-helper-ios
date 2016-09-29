@@ -28,11 +28,15 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
 
 @implementation AWSIdentityManager
 
+static AWSCognitoCredentialsProvider *customCognitoCredentialsProvider = nil;
 static NSString *const AWSInfoIdentityManager = @"IdentityManager";
 static NSString *const AWSInfoRoot = @"AWS";
 static NSString *const AWSInfoMobileHub = @"MobileHub";
 static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
 
++ (void)setCustomCognitoCredentialsProvider:(AWSCognitoCredentialsProvider *)_customCognitoCredentialsProvider{
+    customCognitoCredentialsProvider = _customCognitoCredentialsProvider;
+}
 + (instancetype)defaultIdentityManager {
     static AWSIdentityManager *_defaultIdentityManager = nil;
     static dispatch_once_t onceToken;
@@ -54,7 +58,11 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
     if (self = [super init]) {
         [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
         
-        self.credentialsProvider = serviceInfo.cognitoCredentialsProvider;
+        if (customCognitoCredentialsProvider == nil){
+            self.credentialsProvider = serviceInfo.cognitoCredentialsProvider;
+        } else {
+            self.credentialsProvider = customCognitoCredentialsProvider;
+        }
         [self.credentialsProvider setIdentityProviderManagerOnce:self];
         
         // Init the ProjectTemplateId
