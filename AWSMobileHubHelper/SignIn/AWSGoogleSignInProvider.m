@@ -12,7 +12,7 @@
 
 #import <GoogleSignIn/GoogleSignIn.h>
 
-static NSString *const AWSGoogleSignInProviderKey = @"Google";
+NSString *const AWSGoogleSignInProviderKey = @"Google";
 static NSString *const AWSGoogleSignInProviderUserNameKey = @"Google.userName";
 static NSString *const AWSGoogleSignInProviderImageURLKey = @"Google.imageURL";
 static NSString *const AWSGoogleSignInProviderClientScope = @"profile";
@@ -121,7 +121,7 @@ static NSString *const AWSInfoGoogleClientId = @"ClientId";
             // Waits up to 60 seconds for the Google SDK to refresh a token.
             if (dispatch_semaphore_wait(self.semaphore, dispatch_time(DISPATCH_TIME_NOW, AWSGoogleSignInProviderTokenRefreshTimeout)) != 0) {
                 NSError *error = [NSError errorWithDomain:AWSCognitoCredentialsProviderHelperErrorDomain
-                                                     code:AWSCognitoCredentialsProviderHelperErrorTokenRefreshTimeout
+                                                     code:AWSCognitoCredentialsProviderHelperErrorTypeTokenRefreshTimeout
                                                  userInfo:nil];
                 return [AWSTask taskWithError:error];
             }
@@ -151,7 +151,7 @@ static NSString *const AWSInfoGoogleClientId = @"ClientId";
 
 - (BOOL)isLoggedIn {
     BOOL loggedIn = [[GIDSignIn sharedInstance] hasAuthInKeychain];
-    return [[NSUserDefaults standardUserDefaults] objectForKey:AWSGoogleSignInProviderKey] != nil && loggedIn;
+    return [self isCachedLoginFlagSet] && loggedIn;
 }
 
 - (NSString *)userName {
@@ -173,15 +173,35 @@ static NSString *const AWSInfoGoogleClientId = @"ClientId";
 }
 
 - (void)reloadSession {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:AWSGoogleSignInProviderKey]) {
+    if ([self isCachedLoginFlagSet]) {
         GIDSignIn *signIn = [GIDSignIn sharedInstance];
         [signIn signInSilently];
     }
 }
 
-- (void)completeLoginWithToken:(GIDGoogleUser *)googleUser {
+- (void)setCachedLoginFlag {
     [[NSUserDefaults standardUserDefaults] setObject:@"YES"
                                               forKey:AWSGoogleSignInProviderKey];
+}
+
+- (BOOL)isCachedLoginFlagSet {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:AWSGoogleSignInProviderKey] != nil;
+}
+
+- (void)clearCachedLoginFlag {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSGoogleSignInProviderKey];
+}
+
+- (void)clearUserName {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSGoogleSignInProviderUserNameKey];
+}
+
+- (void)clearImageURL {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSGoogleSignInProviderImageURLKey];
+}
+
+- (void)completeLoginWithToken:(GIDGoogleUser *)googleUser {
+    [self setCachedLoginFlag];
     [[AWSIdentityManager defaultIdentityManager] completeLogin];
     
     self.userName = googleUser.profile.name;
@@ -194,9 +214,15 @@ static NSString *const AWSInfoGoogleClientId = @"ClientId";
     [signIn signIn];
 }
 
+- (void)clearLoginInformation {
+    [self clearCachedLoginFlag];
+    [self clearUserName];
+    [self clearImageURL];
+}
+
 - (void)logout {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSGoogleSignInProviderKey];
     GIDSignIn *signIn = [GIDSignIn sharedInstance];
+    [self clearLoginInformation];
     [signIn disconnect];
 }
 

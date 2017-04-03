@@ -139,7 +139,7 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
         
         NSString *previousPlatformAppArn = [[NSUserDefaults standardUserDefaults] stringForKey: AWSPushManagerUserDefaultsPlatformARNKey];
         
-        if (!previousPlatformAppArn
+        if (previousPlatformAppArn
             && ![previousPlatformAppArn isEqualToString:_pushManagerConfiguration.platformARN]) {
             AWSLogDebug(@"Application ran previously with this ARN: [%@].  New ARN: [%@]", previousPlatformAppArn, _pushManagerConfiguration.platformARN);
             [self setDeviceToken:nil];
@@ -185,7 +185,6 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
 - (void)setEnabled:(BOOL)enabled {
     [[NSUserDefaults standardUserDefaults] setBool:enabled
                                             forKey:AWSPushManagerUserDefaultsIsEnabledKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString *)deviceToken {
@@ -195,7 +194,6 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
 - (void)setDeviceToken:(NSString *)deviceToken {
     [[NSUserDefaults standardUserDefaults] setObject:deviceToken
                                               forKey:AWSPushManagerUserDefaultsDeviceTokenKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString *)endpointARN {
@@ -205,7 +203,6 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
 - (void)setEndpointARN:(NSString *)endpointARN {
     [[NSUserDefaults standardUserDefaults] setObject:endpointARN
                                               forKey:AWSPushManagerUserDefaultsEndpointARNKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString *)platformARN {
@@ -218,7 +215,6 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
 
 - (void)setPlatformARN:(NSString *)platformARN {
     [[NSUserDefaults standardUserDefaults] setObject:platformARN forKey:AWSPushManagerUserDefaultsPlatformARNKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - User action methods
@@ -245,9 +241,6 @@ static NSString *const AWSPushTopics = @"SNSConfiguredTopics";
                 [weakSelf.delegate pushManager:weakSelf
                      didFailToDisableWithError:error];
             });
-        }
-        if (task.exception) {
-            @throw task.exception;
         }
         if (task.result) {
             weakSelf.enabled = NO;
@@ -370,8 +363,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
                 [weakSelf.delegate pushManager:weakSelf
                     didFailToRegisterWithError:task.error];
             });
-        } else if (task.exception) {
-            @throw task.exception;
         } else {
             weakSelf.enabled = YES;
             
@@ -437,7 +428,6 @@ NSString *const AWSPushTopicDictionaryTopicARNKey = @"topicARN";
     [topicDictionary setValue:subscriptionARN forKey:AWSPushTopicDictionarySubscriptionARNKey];
     
     [userDefaults setObject:topicDictionary forKey:self.topicARN];
-    [userDefaults synchronize];
     
     _subscriptionARN = subscriptionARN;
 }

@@ -11,7 +11,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-static NSString *const AWSFacebookSignInProviderKey = @"Facebook";
+NSString *const AWSFacebookSignInProviderKey = @"Facebook";
 static NSString *const AWSFacebookSignInProviderUserNameKey = @"Facebook.userName";
 static NSString *const AWSFacebookSignInProviderImageURLKey = @"Facebook.imageURL";
 static NSTimeInterval const AWSFacebookSignInProviderTokenRefreshBuffer = 10 * 60;
@@ -131,7 +131,7 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
 
 - (BOOL)isLoggedIn {
     BOOL loggedIn = [FBSDKAccessToken currentAccessToken] != nil;
-    return [[NSUserDefaults standardUserDefaults] objectForKey:AWSFacebookSignInProviderKey] != nil && loggedIn;
+    return [self isCachedLoginFlagSet] && loggedIn;
 }
 
 - (NSString *)userName {
@@ -152,6 +152,27 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
                                               forKey:AWSFacebookSignInProviderImageURLKey];
 }
 
+- (void)setCachedLoginFlag {
+    [[NSUserDefaults standardUserDefaults] setObject:@"YES"
+                                              forKey:AWSFacebookSignInProviderKey];
+}
+
+- (BOOL)isCachedLoginFlagSet {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:AWSFacebookSignInProviderKey] != nil;
+}
+
+- (void)clearCachedLoginFlag {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSFacebookSignInProviderKey];
+}
+
+- (void)clearUserName {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSFacebookSignInProviderUserNameKey];
+}
+
+- (void)clearImageURL {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSFacebookSignInProviderImageURLKey];
+}
+
 - (void)reloadSession {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:AWSFacebookSignInProviderKey]
         && [FBSDKAccessToken currentAccessToken]) {
@@ -166,8 +187,7 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
 }
 
 - (void)completeLogin {
-    [[NSUserDefaults standardUserDefaults] setObject:@"YES"
-                                              forKey:AWSFacebookSignInProviderKey];
+    [self setCachedLoginFlag];
     [[AWSIdentityManager defaultIdentityManager] completeLogin];
     
     FBSDKGraphRequest *requestForImageUrl = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
@@ -202,22 +222,31 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
                               fromViewController:self.signInViewController
                                          handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                              if (error) {
-                                                 //[[AWSIdentityManager errorAlert:[NSString stringWithFormat:@"Error logging in with FB: %@", error.localizedDescription]] show];
                                                  self.completionHandler(result, error);
                                              } else if (result.isCancelled) {
-                                                 // Login canceled, do nothing
+                                                 // Login canceled, allow completionhandler to know about it
+                                                 NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+                                                 userInfo[@"message"] = @"User Cancelled Login";
+                                                 NSError *resultError = [NSError errorWithDomain:FBSDKLoginErrorDomain code:FBSDKLoginUnknownErrorCode userInfo:userInfo];
+                                                 self.completionHandler(result,resultError);
                                              } else {
                                                  [self completeLogin];
                                              }
                                          }];
 }
 
+- (void)clearLoginInformation {
+    [self clearCachedLoginFlag];
+    [self clearUserName];
+    [self clearImageURL];
+}
+
 - (void)logout {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSFacebookSignInProviderKey];
+    
     if (!self.facebookLogin) {
         [self createFBSDKLoginManager];
     }
-    
+    [self clearLoginInformation];
     [self.facebookLogin logOut];
 }
 

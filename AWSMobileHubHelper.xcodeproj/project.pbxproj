@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172C83ED1DB57F6C00217417 /* AWSSignInProviderFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 172C83EB1DB57F6C00217417 /* AWSSignInProviderFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		172C83EE1DB57F6C00217417 /* AWSSignInProviderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C83EC1DB57F6C00217417 /* AWSSignInProviderFactory.m */; };
+		172C83EF1DB5869200217417 /* AWSSignInProviderFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 172C83EB1DB57F6C00217417 /* AWSSignInProviderFactory.h */; };
+		173208B21DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 173208B01DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		173208B31DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 173208B11DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.m */; };
+		173208B71DBD52ED007DA836 /* AWSCognitoUserPoolsSignInProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 173208B01DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h */; };
+		17FE6F351DB6CBE20053299B /* AWSSAMLSignInProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 17FE6F331DB6CBE20053299B /* AWSSAMLSignInProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17FE6F361DB6CBE20053299B /* AWSSAMLSignInProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FE6F341DB6CBE20053299B /* AWSSAMLSignInProvider.m */; };
+		17FE6F391DB7E2750053299B /* AWSSAMLSignInProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 17FE6F331DB6CBE20053299B /* AWSSAMLSignInProvider.h */; };
 		1851DCF11D25C5A30010B8AA /* AWSMobileHubHelper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1851DCF01D25C5A30010B8AA /* AWSMobileHubHelper.h */; };
 		1851DD141D25CC890010B8AA /* AWSCloudLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851DD011D25CC890010B8AA /* AWSCloudLogic.m */; };
 		1851DD151D25CC890010B8AA /* AWSContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851DD041D25CC890010B8AA /* AWSContentManager.m */; };
@@ -34,6 +43,28 @@
 		1851DD401D25CDB60010B8AA /* AWSUserFileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1851DD121D25CC890010B8AA /* AWSUserFileManager.h */; };
 		1851DD511D25CF870010B8AA /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1851DD501D25CF7C0010B8AA /* module.modulemap */; };
 		18A3E46C1D52AC5000A3AE26 /* libPods-AWSMobileHubHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3E46B1D52AC5000A3AE26 /* libPods-AWSMobileHubHelper.a */; };
+		5A1F46E8D136C85A0F66DBEB /* libPods-AWSMobileHubHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F313F95C1A385D20A08A0F20 /* libPods-AWSMobileHubHelper.a */; };
+		E409712A1DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E40971281DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E409712B1DDFA41F00624FDC /* AWSMarketoAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E40971291DDFA41F00624FDC /* AWSMarketoAuthorizationManager.m */; };
+		E409712C1DDFA85A00624FDC /* AWSMarketoAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E40971281DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h */; };
+		E424BC571DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E424BC551DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E424BC581DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E424BC561DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.m */; };
+		E424BC5B1DCCE0F600E231E9 /* AWSAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E424BC591DCCE0F600E231E9 /* AWSAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E424BC5C1DCCE0F600E231E9 /* AWSAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E424BC5A1DCCE0F600E231E9 /* AWSAuthorizationManager.m */; };
+		E44D19511DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E44D194F1DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E44D19521DD95D8100255AD3 /* AWSHubspotAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D19501DD95D8100255AD3 /* AWSHubspotAuthorizationManager.m */; };
+		E44D19531DD9619D00255AD3 /* AWSHubspotAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E44D194F1DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h */; };
+		E44D19611DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E44D195F1DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E44D19621DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D19601DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.m */; };
+		E480E0A01DDD07890050DA7B /* AWSQuickbooksAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E44D195F1DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h */; };
+		E49544A81DD3929E008C17FC /* AWSZendeskAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E49544A61DD3929E008C17FC /* AWSZendeskAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E49544A91DD3929E008C17FC /* AWSZendeskAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49544A71DD3929E008C17FC /* AWSZendeskAuthorizationManager.m */; };
+		E49544AD1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E49544AB1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E49544AE1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49544AC1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.m */; };
+		E49544B41DD4C2B6008C17FC /* AWSAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E424BC591DCCE0F600E231E9 /* AWSAuthorizationManager.h */; };
+		E49544B51DD4C2B6008C17FC /* AWSSalesforceAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E424BC551DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h */; };
+		E49544B61DD4C2B6008C17FC /* AWSZendeskAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E49544A61DD3929E008C17FC /* AWSZendeskAuthorizationManager.h */; };
+		E49544B71DD4C2B6008C17FC /* AWSMSDynamicsAuthorizationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E49544AB1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +74,16 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E409712C1DDFA85A00624FDC /* AWSMarketoAuthorizationManager.h in CopyFiles */,
+				E480E0A01DDD07890050DA7B /* AWSQuickbooksAuthorizationManager.h in CopyFiles */,
+				E44D19531DD9619D00255AD3 /* AWSHubspotAuthorizationManager.h in CopyFiles */,
+				E49544B41DD4C2B6008C17FC /* AWSAuthorizationManager.h in CopyFiles */,
+				E49544B51DD4C2B6008C17FC /* AWSSalesforceAuthorizationManager.h in CopyFiles */,
+				E49544B61DD4C2B6008C17FC /* AWSZendeskAuthorizationManager.h in CopyFiles */,
+				E49544B71DD4C2B6008C17FC /* AWSMSDynamicsAuthorizationManager.h in CopyFiles */,
+				173208B71DBD52ED007DA836 /* AWSCognitoUserPoolsSignInProvider.h in CopyFiles */,
+				17FE6F391DB7E2750053299B /* AWSSAMLSignInProvider.h in CopyFiles */,
+				172C83EF1DB5869200217417 /* AWSSignInProviderFactory.h in CopyFiles */,
 				1851DD391D25CDB60010B8AA /* AWSCloudLogic.h in CopyFiles */,
 				1851DD3A1D25CDB60010B8AA /* AWSContentManager.h in CopyFiles */,
 				1851DD3B1D25CDB60010B8AA /* AWSIdentityManager.h in CopyFiles */,
@@ -59,6 +100,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		172C83EB1DB57F6C00217417 /* AWSSignInProviderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSSignInProviderFactory.h; sourceTree = "<group>"; };
+		172C83EC1DB57F6C00217417 /* AWSSignInProviderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSSignInProviderFactory.m; sourceTree = "<group>"; };
+		173208B01DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSCognitoUserPoolsSignInProvider.h; sourceTree = "<group>"; };
+		173208B11DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSCognitoUserPoolsSignInProvider.m; sourceTree = "<group>"; };
+		17FE6F331DB6CBE20053299B /* AWSSAMLSignInProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSSAMLSignInProvider.h; sourceTree = "<group>"; };
+		17FE6F341DB6CBE20053299B /* AWSSAMLSignInProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSSAMLSignInProvider.m; sourceTree = "<group>"; };
 		1851DCED1D25C5A30010B8AA /* libAWSMobileHubHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAWSMobileHubHelper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851DCF01D25C5A30010B8AA /* AWSMobileHubHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSMobileHubHelper.h; sourceTree = "<group>"; };
 		1851DD001D25CC890010B8AA /* AWSCloudLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSCloudLogic.h; sourceTree = "<group>"; };
@@ -80,6 +127,22 @@
 		18A3E46B1D52AC5000A3AE26 /* libPods-AWSMobileHubHelper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AWSMobileHubHelper.a"; path = "/Users/saligram/Library/Developer/Xcode/DerivedData/AWSMobileHubHelper-gyehtqpthehzduaonjwjnaptkadu/Build/Products/Debug-iphonesimulator/libPods-AWSMobileHubHelper.a"; sourceTree = "<absolute>"; };
 		9C8606474456ECAC0A2A47FB /* Pods-AWSMobileHubHelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWSMobileHubHelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-AWSMobileHubHelper/Pods-AWSMobileHubHelper.release.xcconfig"; sourceTree = "<group>"; };
 		B3EA1B7C4DAA1E2BB1B70928 /* Pods-AWSMobileHubHelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWSMobileHubHelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AWSMobileHubHelper/Pods-AWSMobileHubHelper.debug.xcconfig"; sourceTree = "<group>"; };
+		E40971281DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSMarketoAuthorizationManager.h; path = Authorization/AWSMarketoAuthorizationManager.h; sourceTree = "<group>"; };
+		E40971291DDFA41F00624FDC /* AWSMarketoAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSMarketoAuthorizationManager.m; path = Authorization/AWSMarketoAuthorizationManager.m; sourceTree = "<group>"; };
+		E424BC551DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSSalesforceAuthorizationManager.h; path = Authorization/AWSSalesforceAuthorizationManager.h; sourceTree = "<group>"; };
+		E424BC561DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSSalesforceAuthorizationManager.m; path = Authorization/AWSSalesforceAuthorizationManager.m; sourceTree = "<group>"; };
+		E424BC591DCCE0F600E231E9 /* AWSAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSAuthorizationManager.h; path = Authorization/AWSAuthorizationManager.h; sourceTree = "<group>"; };
+		E424BC5A1DCCE0F600E231E9 /* AWSAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSAuthorizationManager.m; path = Authorization/AWSAuthorizationManager.m; sourceTree = "<group>"; };
+		E44D194F1DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSHubspotAuthorizationManager.h; path = Authorization/AWSHubspotAuthorizationManager.h; sourceTree = "<group>"; };
+		E44D19501DD95D8100255AD3 /* AWSHubspotAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSHubspotAuthorizationManager.m; path = Authorization/AWSHubspotAuthorizationManager.m; sourceTree = "<group>"; };
+		E44D195F1DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSQuickbooksAuthorizationManager.h; path = Authorization/AWSQuickbooksAuthorizationManager.h; sourceTree = "<group>"; };
+		E44D19601DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSQuickbooksAuthorizationManager.m; path = Authorization/AWSQuickbooksAuthorizationManager.m; sourceTree = "<group>"; };
+		E49544A61DD3929E008C17FC /* AWSZendeskAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSZendeskAuthorizationManager.h; path = Authorization/AWSZendeskAuthorizationManager.h; sourceTree = "<group>"; };
+		E49544A71DD3929E008C17FC /* AWSZendeskAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSZendeskAuthorizationManager.m; path = Authorization/AWSZendeskAuthorizationManager.m; sourceTree = "<group>"; };
+		E49544AA1DD3B0AC008C17FC /* AWSAuthorizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AWSAuthorizer.h; path = Authorization/AWSAuthorizer.h; sourceTree = "<group>"; };
+		E49544AB1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSMSDynamicsAuthorizationManager.h; path = Authorization/AWSMSDynamicsAuthorizationManager.h; sourceTree = "<group>"; };
+		E49544AC1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSMSDynamicsAuthorizationManager.m; path = Authorization/AWSMSDynamicsAuthorizationManager.m; sourceTree = "<group>"; };
+		F313F95C1A385D20A08A0F20 /* libPods-AWSMobileHubHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AWSMobileHubHelper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A3E46C1D52AC5000A3AE26 /* libPods-AWSMobileHubHelper.a in Frameworks */,
+				5A1F46E8D136C85A0F66DBEB /* libPods-AWSMobileHubHelper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +179,7 @@
 		1851DCEF1D25C5A30010B8AA /* AWSMobileHubHelper */ = {
 			isa = PBXGroup;
 			children = (
+				E424BC501DCCDFDC00E231E9 /* Authorization */,
 				1851DD501D25CF7C0010B8AA /* module.modulemap */,
 				1851DCFF1D25CC890010B8AA /* CloudLogic */,
 				1851DD021D25CC890010B8AA /* ContentDelivery */,
@@ -166,11 +231,17 @@
 		1851DD0B1D25CC890010B8AA /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				173208B01DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h */,
+				173208B11DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.m */,
 				1851DD0C1D25CC890010B8AA /* AWSFacebookSignInProvider.h */,
 				1851DD0D1D25CC890010B8AA /* AWSFacebookSignInProvider.m */,
 				1851DD0E1D25CC890010B8AA /* AWSGoogleSignInProvider.h */,
 				1851DD0F1D25CC890010B8AA /* AWSGoogleSignInProvider.m */,
 				1851DD101D25CC890010B8AA /* AWSSignInProvider.h */,
+				172C83EB1DB57F6C00217417 /* AWSSignInProviderFactory.h */,
+				172C83EC1DB57F6C00217417 /* AWSSignInProviderFactory.m */,
+				17FE6F331DB6CBE20053299B /* AWSSAMLSignInProvider.h */,
+				17FE6F341DB6CBE20053299B /* AWSSAMLSignInProvider.m */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -188,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				18A3E46B1D52AC5000A3AE26 /* libPods-AWSMobileHubHelper.a */,
+				F313F95C1A385D20A08A0F20 /* libPods-AWSMobileHubHelper.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,6 +271,28 @@
 				9C8606474456ECAC0A2A47FB /* Pods-AWSMobileHubHelper.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E424BC501DCCDFDC00E231E9 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				E49544AA1DD3B0AC008C17FC /* AWSAuthorizer.h */,
+				E424BC591DCCE0F600E231E9 /* AWSAuthorizationManager.h */,
+				E424BC5A1DCCE0F600E231E9 /* AWSAuthorizationManager.m */,
+				E424BC551DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h */,
+				E424BC561DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.m */,
+				E49544A61DD3929E008C17FC /* AWSZendeskAuthorizationManager.h */,
+				E49544A71DD3929E008C17FC /* AWSZendeskAuthorizationManager.m */,
+				E49544AB1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h */,
+				E49544AC1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.m */,
+				E44D194F1DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h */,
+				E44D19501DD95D8100255AD3 /* AWSHubspotAuthorizationManager.m */,
+				E44D195F1DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h */,
+				E44D19601DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.m */,
+				E40971281DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h */,
+				E40971291DDFA41F00624FDC /* AWSMarketoAuthorizationManager.m */,
+			);
+			name = Authorization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +309,18 @@
 				1851DD211D25CD040010B8AA /* AWSFacebookSignInProvider.h in Headers */,
 				1851DD221D25CD040010B8AA /* AWSGoogleSignInProvider.h in Headers */,
 				1851DD231D25CD040010B8AA /* AWSSignInProvider.h in Headers */,
+				172C83ED1DB57F6C00217417 /* AWSSignInProviderFactory.h in Headers */,
+				E424BC571DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.h in Headers */,
+				E49544AD1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.h in Headers */,
+				E49544A81DD3929E008C17FC /* AWSZendeskAuthorizationManager.h in Headers */,
+				E424BC5B1DCCE0F600E231E9 /* AWSAuthorizationManager.h in Headers */,
+				17FE6F351DB6CBE20053299B /* AWSSAMLSignInProvider.h in Headers */,
 				1851DD241D25CD090010B8AA /* AWSUserFileManager.h in Headers */,
+				173208B21DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.h in Headers */,
 				1851DD251D25CD0D0010B8AA /* AWSMobileHubHelper.h in Headers */,
+				E44D19611DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.h in Headers */,
+				E409712A1DDFA41F00624FDC /* AWSMarketoAuthorizationManager.h in Headers */,
+				E44D19511DD95D8100255AD3 /* AWSHubspotAuthorizationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,12 +331,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1851DCF61D25C5A30010B8AA /* Build configuration list for PBXNativeTarget "AWSMobileHubHelper" */;
 			buildPhases = (
-				1A737FE591F558B10F28BC25 /* 📦 Check Pods Manifest.lock */,
+				1A737FE591F558B10F28BC25 /* [CP] Check Pods Manifest.lock */,
 				1851DCE91D25C5A30010B8AA /* Sources */,
 				1851DCEA1D25C5A30010B8AA /* Frameworks */,
 				1851DCEB1D25C5A30010B8AA /* CopyFiles */,
 				1851DD1C1D25CCE70010B8AA /* Headers */,
-				E70AB00DDA6652B541F1277A /* 📦 Copy Pods Resources */,
+				E70AB00DDA6652B541F1277A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,29 +379,29 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A737FE591F558B10F28BC25 /* 📦 Check Pods Manifest.lock */ = {
+		1A737FE591F558B10F28BC25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E70AB00DDA6652B541F1277A /* 📦 Copy Pods Resources */ = {
+		E70AB00DDA6652B541F1277A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,9 +416,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44D19621DDBCCE800255AD3 /* AWSQuickbooksAuthorizationManager.m in Sources */,
 				1851DD141D25CC890010B8AA /* AWSCloudLogic.m in Sources */,
+				E49544AE1DD3B757008C17FC /* AWSMSDynamicsAuthorizationManager.m in Sources */,
+				173208B31DBC6E12007DA836 /* AWSCognitoUserPoolsSignInProvider.m in Sources */,
+				E409712B1DDFA41F00624FDC /* AWSMarketoAuthorizationManager.m in Sources */,
 				1851DD191D25CC890010B8AA /* AWSGoogleSignInProvider.m in Sources */,
 				1851DD171D25CC890010B8AA /* AWSPushManager.m in Sources */,
+				E44D19521DD95D8100255AD3 /* AWSHubspotAuthorizationManager.m in Sources */,
+				E424BC581DCCE0B200E231E9 /* AWSSalesforceAuthorizationManager.m in Sources */,
+				17FE6F361DB6CBE20053299B /* AWSSAMLSignInProvider.m in Sources */,
+				172C83EE1DB57F6C00217417 /* AWSSignInProviderFactory.m in Sources */,
+				E49544A91DD3929E008C17FC /* AWSZendeskAuthorizationManager.m in Sources */,
+				E424BC5C1DCCE0F600E231E9 /* AWSAuthorizationManager.m in Sources */,
 				1851DD181D25CC890010B8AA /* AWSFacebookSignInProvider.m in Sources */,
 				1851DD161D25CC890010B8AA /* AWSIdentityManager.m in Sources */,
 				1851DD151D25CC890010B8AA /* AWSContentManager.m in Sources */,
