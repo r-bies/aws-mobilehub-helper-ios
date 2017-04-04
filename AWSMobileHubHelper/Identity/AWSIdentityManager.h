@@ -44,11 +44,18 @@ FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignOutNotification;
 @property (nonatomic, readonly, nullable) NSString *identityId;
 
 /**
+ * Amazon Cognito Credentials Provider. This is the credential provider used by the Identity Manager.
+ *
+ * @return the cognito credentials provider
+ */
+@property (nonatomic, readonly, strong) AWSCognitoCredentialsProvider *credentialsProvider;
+
+/**
  Returns the Identity Manager singleton instance configured using the information provided in `Info.plist` file.
  
  *Swift*
  
- let identityManager = AWSIdentityManager.defaultIdentityManager()
+ let identityManager = AWSIdentityManager.default()
  
  *Objective-C*
  
@@ -71,8 +78,7 @@ FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignOutNotification;
  * @param completionHandler used to callback application with async operation results
  */
 - (void)loginWithSignInProvider:(id<AWSSignInProvider>)signInProvider
-              completionHandler:(void (^)(id _Nullable result, NSError * _Nullable error))completionHandler;
-
+              completionHandler:(void (^)(id _Nullable result, NSError * _Nullable error))completionHandler NS_SWIFT_NAME(login(signInProvider:completionHandler:));
 
 /**
  * Attempts to resume session with the previous sign-in provider.
@@ -83,7 +89,9 @@ FOUNDATION_EXPORT NSString *const AWSIdentityManagerDidSignOutNotification;
 /**
  * Passes parameters used to launch the application to the current identity provider. For some
  * third party providers, this completes the User Sign-in call flow, which used a browser to
- * get information from the user, directly.
+ * get information from the user, directly. The current sign-in provider will be set to nil if
+ * the sign-in provider is not registered using `registerAWSSignInProvider:forKey` method  of 
+ * `AWSSignInProviderFactory` class.
  * @param application application
  * @param launchOptions options used to launch the application
  * @return true if this call handled the operation

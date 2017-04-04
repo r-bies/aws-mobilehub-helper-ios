@@ -11,6 +11,7 @@
 #import "AWSSignInProvider.h"
 #import "AWSFacebookSignInProvider.h"
 #import "AWSGoogleSignInProvider.h"
+#import "AWSSignInProviderFactory.h"
 
 NSString *const AWSIdentityManagerDidSignInNotification = @"com.amazonaws.AWSIdentityManager.AWSIdentityManagerDidSignInNotification";
 NSString *const AWSIdentityManagerDidSignOutNotification = @"com.amazonaws.AWSIdentityManager.AWSIdentityManagerDidSignOutNotification";
@@ -19,10 +20,17 @@ typedef void (^AWSIdentityManagerCompletionBlock)(id result, NSError *error);
 
 @interface AWSIdentityManager()
 
-@property (nonatomic, strong) AWSCognitoCredentialsProvider *credentialsProvider;
+@property (nonatomic, readwrite, strong) AWSCognitoCredentialsProvider *credentialsProvider;
 @property (atomic, copy) AWSIdentityManagerCompletionBlock completionHandler;
 
 @property (nonatomic, strong) id<AWSSignInProvider> currentSignInProvider;
+@property (nonatomic, strong) id<AWSSignInProvider> potentialSignInProvider;
+
+@end
+
+@interface AWSSignInProviderFactory()
+
+-(NSArray<NSString *>*)getRegisterdSignInProviders;
 
 @end
 
@@ -56,7 +64,6 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
 
 - (instancetype)initWithCredentialProvider:(AWSServiceInfo *)serviceInfo {
     if (self = [super init]) {
-        [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
         
         if (customCognitoCredentialsProvider == nil){
             self.credentialsProvider = serviceInfo.cognitoCredentialsProvider;
@@ -124,10 +131,6 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
             [notificationCenter postNotificationName:AWSIdentityManagerDidSignOutNotification
                                               object:[AWSIdentityManager defaultIdentityManager]
                                             userInfo:nil];
-            if (task.exception) {
-                AWSLogError(@"Fatal exception: [%@]", task.exception);
-                kill(getpid(), SIGKILL);
-            }
             completionHandler(task.result, task.error);
         });
         return nil;
@@ -136,10 +139,10 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
 
 - (void)loginWithSignInProvider:(id)signInProvider
               completionHandler:(void (^)(id result, NSError *error))completionHandler {
-    self.currentSignInProvider = signInProvider;
+    self.potentialSignInProvider = signInProvider;
     
     self.completionHandler = completionHandler;
-    [self.currentSignInProvider login:completionHandler];
+    [self.potentialSignInProvider login:completionHandler];
 }
 
 - (void)resumeSessionWithCompletionHandler:(void (^)(id result, NSError *error))completionHandler {
@@ -156,6 +159,11 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
     // Force a refresh of credentials to see if we need to merge
     [self.credentialsProvider invalidateCachedTemporaryCredentials];
     
+    if (self.potentialSignInProvider) {
+        self.currentSignInProvider = self.potentialSignInProvider;
+        self.potentialSignInProvider = nil;
+    }
+    
     [[self.credentialsProvider credentials] continueWithBlock:^id _Nullable(AWSTask<AWSCredentials *> * _Nonnull task) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.currentSignInProvider) {
@@ -163,10 +171,6 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
                 [notificationCenter postNotificationName:AWSIdentityManagerDidSignInNotification
                                                   object:[AWSIdentityManager defaultIdentityManager]
                                                 userInfo:nil];
-            }
-            if (task.exception) {
-                AWSLogError(@"Fatal exception: [%@]", task.exception);
-                kill(getpid(), SIGKILL);
             }
             self.completionHandler(task.result, task.error);
         });
@@ -176,18 +180,12 @@ static NSString *const AWSInfoProjectClientId = @"ProjectClientId";
 
 - (BOOL)interceptApplication:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    Class signInProviderClass = nil;
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Facebook"]) {
-        signInProviderClass = NSClassFromString(@"AWSFacebookSignInProvider");
-    } else if ([[NSUserDefaults standardUserDefaults] objectForKey:@"Google"]) {
-        signInProviderClass = NSClassFromString(@"AWSGoogleSignInProvider");
-    }
     
-    self.currentSignInProvider = [signInProviderClass sharedInstance];
-    
-    if (signInProviderClass && !self.currentSignInProvider) {
-        NSLog(@"Unable to locate the SignIn Provider SDK. Signing Out any existing session...");
-        [self wipeAll];
+    for(NSString *key in [[AWSSignInProviderFactory sharedInstance] getRegisterdSignInProviders]) {
+        if ([[[AWSSignInProviderFactory sharedInstance] signInProviderForKey:key] isCachedLoginFlagSet]) {
+            self.currentSignInProvider = [[AWSSignInProviderFactory sharedInstance] signInProviderForKey:key];
+        }
+        
     }
     
     if (self.currentSignInProvider) {
@@ -202,11 +200,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                      openURL:(NSURL *)url
            sourceApplication:(NSString *)sourceApplication
                   annotation:(id)annotation {
-    if (self.currentSignInProvider) {
-        return [self.currentSignInProvider interceptApplication:application
-                                                        openURL:url
-                                              sourceApplication:sourceApplication
-                                                     annotation:annotation];
+    if (self.potentialSignInProvider) {
+        return [self.potentialSignInProvider interceptApplication:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
     }
     else {
         return YES;
